@@ -1,7 +1,7 @@
-const NavItem = ({title}) => {
+const NavItem = ({title, changePage}) => {
     return (
         <div>
-            <li className="nav-item btn btn-danger mx-1 border-warning">{title}</li>
+            <li onClick={() => changePage(title)} className="nav-item btn btn-danger mx-1 border-warning">{title}</li>
         </div>
     );
 };
