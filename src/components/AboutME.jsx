@@ -1,16 +1,28 @@
 import {useEffect, useState} from "react";
-import {base_url} from "../utils/constants.js";
+import {base_url, period_month} from "../utils/constants.js";
 import hero from "../assets/main.jpg";
 
 const AboutMe = () => {
     const [aboutMe, setAboutMe] = useState({});
     useEffect(() => {
-        fetch(`${base_url}/v1/peoples/1`)
-            .then(res => res.json())
-            .then(data => setAboutMe(data))
-            .catch(() => {
-                setAboutMe({});
-            });
+        const hero = JSON.parse(localStorage.getItem("hero"));
+        if (hero && ((Date.now() - hero.timestamp) < period_month)) {
+        setAboutMe(hero.payload);
+        }else{
+            fetch(`${base_url}/v1/peoples/1`)
+                .then(res => res.json())
+                .then(data => {
+                    setAboutMe(data);
+                    localStorage.setItem("hero", JSON.stringify({
+                        payload: data, timestamp: Date.now()
+                    }));
+                })
+                .catch(() => {
+                    setAboutMe({});
+                });
+        }
+
+
     }, [])
     if (Object.keys(aboutMe).length) {
         return (<div>
