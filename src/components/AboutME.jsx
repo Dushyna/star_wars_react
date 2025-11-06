@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {base_url, period_month} from "../utils/constants.js";
 import hero from "../assets/main.jpg";
+import Text from "./ui/Text.jsx";
 
 const AboutMe = () => {
     const [aboutMe, setAboutMe] = useState({});
@@ -26,30 +27,31 @@ const AboutMe = () => {
     }, [])
     if (Object.keys(aboutMe).length) {
         return (<div>
-                <main className="clearfix d-flex justify-content-between">
-                    <div className=" w-50 me-3">
-                        <img className="w-100" src={hero} alt="Luke Skywalker"/>
+                <main className=" flex ">
+                    <div className=" w-1/2 m-2 ">
+                        <img className="w-full rounded-md" src={hero} alt="Luke Skywalker"/>
                     </div>
                     <div
-                        className=" w-50 justify-content-center border border-warning rounded-bottom-5 ms-2 me-1 ps-2 pt-2">
-                        <p className="far-galaxy fs-2 lh-2">{`Name: ${aboutMe.name}`} </p>
-                        <p className="far-galaxy fs-2 lh-2">{`Gender: ${aboutMe.gender}`}</p>
-                        <p className="far-galaxy fs-2 lh-2">{`Skin color: ${aboutMe.skin_color}`}</p>
-                        <p className="far-galaxy fs-2 lh-2">{`Hair color: ${aboutMe.hair_color}`}</p>
-                        <p className="far-galaxy fs-2 lh-2">{`Height: ${aboutMe.height}`}</p>
-                        <p className="far-galaxy fs-2 lh-2">{`Eye color: ${aboutMe.eye_color}`}</p>
-                        <p className="far-galaxy fs-2 lh-2">{`Mass: ${aboutMe.mass}`}</p>
-                        <p className="far-galaxy fs-2 lh-2">{`Birth year: ${aboutMe.birth_year}`}</p>
+                        className=" w-1/2  border border-main rounded-md m-2 p-2">
+                        <Text>{`Name: ${aboutMe.name}`} </Text>
+                        <Text>{`Gender: ${aboutMe.gender}`}</Text>
+                        <Text>{`Skin color: ${aboutMe.skin_color}`}</Text>
+                        <Text>{`Hair color: ${aboutMe.hair_color}`}</Text>
+                        <Text>{`Height: ${aboutMe.height}`}</Text>
+                        <Text>{`Eye color: ${aboutMe.eye_color}`}</Text>
+                        <Text>{`Mass: ${aboutMe.mass}`}</Text>
+                        <Text>{`Birth year: ${aboutMe.birth_year}`}</Text>
                     </div>
                 </main>
             </div>
         );
     } else {
         return (
-            <p className="far-galaxy fs-2 lh-2">
-                <span className={'spinner-border spinner-border-sm'}> </span>
-                <span className={'spinner-grow spinner-grow-sm'}>Loading...</span>
-            </p>
+            <Text>
+                <svg className="mr-3 size-5 animate-spin bg-main" viewBox="0 0 24 24">
+                </svg>
+                <span>Loading...</span>
+            </Text>
         );
     }
 

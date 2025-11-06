@@ -1,6 +1,7 @@
-import './Contact.css'
 import {useEffect, useState} from "react";
 import {base_url, period_month} from "../utils/constants.js";
+import Label from "./ui/Label.jsx";
+import Input from "./ui/Input.jsx";
 
 const Contact = () => {
     const [planets, setPlanets] = useState([]);
@@ -27,29 +28,29 @@ const Contact = () => {
     }, [])
 
     return (
-        <div className="container">
-            <form action="./">
+        <div className="flex justify-center m-2">
+            <form className="flex flex-col gap-2 w-1/2" action="./">
 
-                <label htmlFor="fname">First Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Your name.."/>
+                <Label >First Name</Label>
+                <Input name="firstname" placeholder="Your name.."/>
 
-                <label htmlFor="lname">Last Name</label>
-                <input type="text" id="lname" name="lastname" placeholder="Your last name.."/>
+                <Label >Last Name</Label>
+                <Input name="lastname" placeholder="Your last name.."/>
 
-                <label htmlFor="country">Planets</label>
-                <select id="country" name="country">
+                <Label >Planets</Label>
+                <select className='bg-cyan-50 p-4 border rounded-2xl' name="planet">
                     {planets.map((item) => {
                         return (<option key={item} value={item}>{item}</option>
                         )
 
                     })}
-
                 </select>
 
-                <label htmlFor="subject">Subject</label>
-                <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
+                <Label >Subject</Label>
+                <textarea className='bg-cyan-50 p-4 border rounded-2xl' name="subject" placeholder="Write something.."></textarea>
 
-                <input type="submit" value="Submit"/>
+                <input className='border rounded-2xl text-center bg-red border-main p-4  cursor-pointer hover:bg-red-500
+              hover:text-white' type="submit" value="Submit"/>
 
             </form>
         </div>

@@ -1,13 +1,14 @@
 import {useEffect, useState} from "react";
 import {base_url} from "../utils/constants.js";
+import Text from "./ui/Text.jsx";
 
 const OpeningCrawl = () => {
     const [openingCrawl, setOpeningCrawl] = useState();
-        useEffect(() => {
-        const opening_crawl=sessionStorage.getItem("opening_crawl");
+    useEffect(() => {
+        const opening_crawl = sessionStorage.getItem("opening_crawl");
         if (opening_crawl) {
             setOpeningCrawl(opening_crawl);
-        }else {
+        } else {
             const episode = Math.floor(Math.random() * 6) + 1;
             fetch(`${base_url}/v1/films/${episode}`)
                 .then(res => res.json())
@@ -19,17 +20,18 @@ const OpeningCrawl = () => {
             //return () => console.log(" component OpeningCrawl unmounted");
 
         }
-           }, [])
-    if(openingCrawl){
+    }, [])
+    if (openingCrawl) {
         return (
-            <p className="far-galaxy fs-2 lh-2">{openingCrawl}</p>
+            <Text>{openingCrawl}</Text>
         );
-    }else {
+    } else {
         return (
-            <p className="far-galaxy fs-2 lh-2">
-                <span className={'spinner-border spinner-border-sm'}> </span>
-               <span className={'spinner-grow spinner-grow-sm' }>Loading...</span>
-            </p>
+            <Text>
+                <svg className="mr-3 size-5 animate-spin bg-main" viewBox="0 0 24 24">
+                </svg>
+                <span>Loading...</span>
+            </Text>
         )
     }
 

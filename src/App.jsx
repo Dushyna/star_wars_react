@@ -12,7 +12,7 @@ function App() {
     const changePage = (page) => {setPage(page);};
 
     return (
-        <div className={"container-fluid"}>
+        <div className={"container-fluid mx-2"}>
             <Context value={{changePage,page}}>
             <Header  />
             <Main   />
